@@ -1,0 +1,8 @@
+# requirements.txt
+
+pydantic-ai
+Pillow
+openai
+elevenlabs
+playsound
+python-dotenv
