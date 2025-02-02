@@ -62,7 +62,7 @@ class OrderWindow:
             # Try to load the image file with different extensions
             for ext in image_extensions:
                 try:
-                    with Image.open(f"{order_item.product.id}.{ext}") as img:
+                    with Image.open(f"assets/img/{order_item.product.id}.{ext}") as img:
                         img.thumbnail((100, 100))  # Resize while maintaining aspect ratio.
                         photo = ImageTk.PhotoImage(img)
                         break  # Exit the loop once an image is successfully loaded
