@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>McDrive AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>McDrive AI</h1>
+    <div class="content-wrapper">
+      <!-- Left Column - Chat -->
+      <div class="chat-column">
+        <div id="chat-history" class="chat-history">
+          <p class="system-message">Welcome! Click "Start Session" to begin.</p>
+        </div>
+        <div class="chat-controls">
+          <div class="input-area">
+            <input id="user-input" type="text" placeholder="Ask about the menu...">
+            <button id="send-btn">Send</button>
+          </div>
+          <div class="button-group">
+            <button id="start-btn">Start Session</button>
+            <button id="stop-btn">Stop Session</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column - Order -->
+      <div class="order-column">
+        <h2>Current Order</h2>
+        <div id="order-display" class="order-display">
+          <p class="empty-order">No items in order</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

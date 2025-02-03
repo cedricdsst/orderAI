@@ -1,8 +1,5 @@
-# requirements.txt
-
-pydantic-ai
-Pillow
+fastapi
+uvicorn
 openai
-elevenlabs
-playsound
+pydantic-ai
 python-dotenv
