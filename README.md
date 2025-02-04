@@ -38,13 +38,13 @@ OPENAI_API_KEY=your_openai_api_key_here
 ## 🏃 Usage
 Run the application with:
 ```bash
-python main.py
+python app.py
 ```
 - The interactive AI chat will handle customer inquiries and orders.
-- A separate GUI window will display the current order details.
+
 
 ## 🖼️ GUI Preview
-The application features a live **Tkinter**-based GUI that updates as users add or modify orders.
+The application features a local browser page to interact with the Agent
 
 ## 📜 License
 This project is licensed under the **MIT License**.

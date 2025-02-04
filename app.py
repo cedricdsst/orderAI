@@ -40,7 +40,7 @@ class ConnectionManager:
 # ---------------------------------------------------------------------
 # Create FastAPI and mount the "frontend" folder to serve static files.
 # ---------------------------------------------------------------------
-app = FastAPI(title="OrderAI")
+app = FastAPI(title="app")
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 # Serve index.html at the root ("/")
@@ -52,7 +52,7 @@ async def root():
 # typically you don't need strict CORS rules.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # or ["https://www.chokbar.fr"] if you want to be strict
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

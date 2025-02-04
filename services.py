@@ -87,7 +87,7 @@ class ChatService:
                 "if customer dosnt indicate quantity, assume 1. "
                 "If a customer wants to remove an item, use 'remove_order_item'. "
                 "Always ask if they want something else, and only when the customer says they are done, call 'place_order'."
-                "If the clients talks about or ask for a menu tell him its not yet available and it will come on next update. "
+               
             )
 
         @agent.tool
