@@ -1,5 +1,8 @@
 fastapi
 uvicorn
-openai
-pydantic-ai
+pydantic
 python-dotenv
+edge-tts
+websockets
+pydantic-ai
+openai

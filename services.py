@@ -4,6 +4,7 @@ import uuid
 from typing import List, Dict
 from models import MenuItem, OrderItem, RestaurantDeps
 from pydantic_ai import Agent, RunContext
+#from pydantic_ai.models.gemini import GeminiModel  # Changed to Gemini
 from pydantic_ai.models.openai import OpenAIModel
 
 class ChatService:
@@ -50,7 +51,6 @@ class ChatService:
         Merge the new item with existing items if they have the same product and instructions,
         otherwise add it as a new item.
         """
-        # Try to find matching item (same product and instructions)
         matching_item = next(
             (item for item in current_items
              if item.product.id == new_item.product.id and
@@ -59,15 +59,17 @@ class ChatService:
         )
 
         if matching_item:
-            # If found matching item, increment its quantity
             matching_item.quantity += new_item.quantity
         else:
-            # If no matching item found, add new item
             current_items.append(new_item)
 
     def _initialize_agent(self):
         """Initialize the AI agent."""
-        model = OpenAIModel("gpt-4o-mini", api_key=os.getenv("OPENAI_API_KEY"))
+        # Changed to use Gemini model
+        model = OpenAIModel(
+    'gpt-4o-mini',  # Using Gemini 1.5 Flash for optimal performance
+            api_key=os.getenv("OPENAI_API_KEY")  # Use Gemini API key instead of OpenAI
+        )
         agent = Agent(model)
 
         @agent.system_prompt
@@ -78,7 +80,7 @@ class ChatService:
             ]
             menu_details = "\n".join(menu_lines)
             return (
-                f"You are a restaurant assistant for mc drive AI. Here is our menu:\n{menu_details}\n\n"
+                f"You are a restaurant assistant for mc drive AI who speaks only FRENCH. Here is our menu:\n{menu_details}\n\n"
                 "generate the shortest possible response to the user's message."
                 "Answer questions about our menu accurately. "
                 "When a customer wants to order, use 'update_order' to add items. You can specify quantity and special instructions. "
@@ -87,7 +89,6 @@ class ChatService:
                 "if customer dosnt indicate quantity, assume 1. "
                 "If a customer wants to remove an item, use 'remove_order_item'. "
                 "Always ask if they want something else, and only when the customer says they are done, call 'place_order'."
-               
             )
 
         @agent.tool
@@ -108,7 +109,6 @@ class ChatService:
                     self._merge_or_add_order_item(ctx.deps.current_order["items"], new_item)
 
             await self._send_order_update(ctx.deps.session_id)
-
             return json.dumps(self.get_order(ctx.deps.session_id), indent=2)
 
         @agent.tool
@@ -117,7 +117,6 @@ class ChatService:
                                     quantity: int = None) -> str:
             """Remove items from the order."""
             for prod_id in order_item_ids:
-                # Find all items matching this product id
                 matching_items = [
                     (idx, item) for idx, item in enumerate(ctx.deps.current_order["items"])
                     if item.product.id == prod_id
@@ -125,12 +124,10 @@ class ChatService:
 
                 if matching_items:
                     if quantity is None:
-                        # Remove all quantities of this item
                         for idx, _ in reversed(matching_items):
                             del ctx.deps.current_order["items"][idx]
                     else:
-                        # Remove specific quantity
-                        idx, item = matching_items[0]  # Take first matching item
+                        idx, item = matching_items[0]
                         if item.quantity <= quantity:
                             del ctx.deps.current_order["items"][idx]
                         else:
@@ -170,13 +167,7 @@ class ChatService:
             with open(orders_file, "w") as f:
                 json.dump(orders, f, indent=2)
 
-            # Clear the in-memory order
             ctx.deps.current_order["items"] = []
-
-            # Send normal "order update" that effectively empties the cart
-            # await self._send_order_update(ctx.deps.session_id)
-
-            # NEW STEP: Inform the client via WebSocket that the order is finished.
             await self._send_past_order(ctx.deps.session_id, order_number)
 
             return json.dumps({
