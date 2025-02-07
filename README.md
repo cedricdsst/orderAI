@@ -8,7 +8,6 @@
 - 🛒 **Order Management**: Add or remove items from your order with special instructions.
 - 🔄 **Real-Time Order Display**: View current orders in a graphical user interface (GUI).
 - 📦 **Order Finalization**: Generate and store order details with unique order numbers.
-- 🔑 **Secure API Key Handling**: Uses `.env` for secure storage of API keys.
 
 ## 🏗️ Installation
 
