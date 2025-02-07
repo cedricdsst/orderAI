@@ -7,6 +7,8 @@ on:
 jobs:
   test-startup:
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - uses: actions/checkout@v2
       
@@ -22,10 +24,6 @@ jobs:
           
       - name: Test application startup
         run: |
-        
           python -m uvicorn app:app --host 0.0.0.0 --port 8000 &
-       
           sleep 5
-      
           curl http://localhost:8000/
-     
