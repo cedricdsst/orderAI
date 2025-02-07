@@ -22,10 +22,10 @@ jobs:
           
       - name: Test application startup
         run: |
-          # Lance l'application en arrière-plan
-          python -m uvicorn main:app --host 0.0.0.0 --port 8000 &
-          # Attend 5 secondes que l'application démarre
+        
+          python -m uvicorn app:app --host 0.0.0.0 --port 8000 &
+       
           sleep 5
-          # Vérifie que l'application répond
+      
           curl http://localhost:8000/
-          # Si curl échoue, le workflow échouera
+     
