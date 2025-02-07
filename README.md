@@ -1,5 +1,5 @@
 # 🍽️ OrderAI - Intelligent Restaurant Assistant
-### TRY IT NOW AT : https://chokbar.fr/
+### TRY IT NOW AT : https://www.chokbar.fr/
 ## 📌 Overview
 **OrderAI** is an AI-powered restaurant assistant that helps customers browse the menu, place orders, and get real-time order updates via a user-friendly interactive interface. It integrates OpenAI's GPT-based model to handle customer queries and manage orders seamlessly.
 
