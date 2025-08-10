@@ -17,7 +17,8 @@ export default function Page() {
   }
 
   return (
-    <div className="h-screen bg-gray-100 flex flex-col">
+    <div className="h-screen bg-gray-100">
+      <div className="h-full flex flex-col max-w-7xl mx-auto bg-gray-100">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
@@ -55,6 +56,7 @@ export default function Page() {
           <OrderSummary order={order} locale={locale} />
         </div>
       </div>
+    </div>
     </div>
   );
 }
