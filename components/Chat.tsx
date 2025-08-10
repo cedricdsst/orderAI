@@ -61,7 +61,7 @@ export default function Chat({ onOrderChange, locale }: ChatProps) {
   return (
     <>
       {/* Chat messages */}
-      <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-4">
         <div className="w-full space-y-4">
           {turns.map((t, idx) => (
             <div key={idx} className={`flex ${t.role === "user" ? "justify-end" : "justify-start"}`}>

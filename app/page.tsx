@@ -41,17 +41,17 @@ export default function Page() {
       {/* Main content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Menu sidebar */}
-        <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
+        <div className="flex-1 min-w-80 bg-white border-r border-gray-200 flex flex-col">
           <Menu locale={locale} />
         </div>
 
         {/* Chat area */}
-        <div className="flex-1 flex flex-col max-w-2xl mx-auto">
+        <div className="w-full max-w-2xl flex flex-col bg-gray-50">
           <Chat onOrderChange={setOrder} locale={locale} />
         </div>
 
         {/* Order sidebar */}
-        <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
+        <div className="flex-1 min-w-80 bg-white border-l border-gray-200 flex flex-col">
           <OrderSummary order={order} locale={locale} />
         </div>
       </div>
