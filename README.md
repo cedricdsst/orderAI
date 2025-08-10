@@ -10,7 +10,7 @@ Application Next.js (App Router, TypeScript, Tailwind) simulant une prise de com
 - **📱 Interface moderne** : Design épuré avec 3 colonnes (Menu | Chat | Commande)
 - **🔒 Anti-hallucination** : Validation stricte côté serveur, seuls les articles du menu sont acceptés
 - **✅ Détection intelligente** : Reconnaissance automatique de fin de commande
-- **💰 Prix européens** : Affichage en euros sans taxes séparées
+
 
 ### 1) Prérequis
 - Node.js ≥ 18.17
@@ -26,24 +26,15 @@ Créez un fichier `.env.local` à la racine du projet avec votre clé OpenAI.
 
 Fichier: `.env.local`
 ```bash
-# Clé API (sk-... OU sk-proj-...)
+# Clé API 
 OPENAI_API_KEY=sk-...ou_sk-proj-...
 
-# Important:
-# - Si votre clé est de type sk-proj-..., N'AJOUTEZ PAS OPENAI_ORG / OPENAI_PROJECT ici.
-#   La clé est déjà liée au projet et l'API ignore ces en-têtes.
-# - Si votre clé est de type sk-... (org-scoped), vous pouvez préciser:
-# OPENAI_ORG=org_...
-# OPENAI_PROJECT=proj_...
 
 # Optionnel: choisir le modèle (par défaut: gpt-4o-mini)
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-**Notes importantes :**
-- Si vous obtenez une erreur « insufficient_quota » alors que vous avez du crédit, vérifiez que la clé (surtout `sk-proj-...`) pointe vers un **projet** disposant de crédit. Sinon, utilisez une clé liée à l'**organisation** avec quota, ou définissez `OPENAI_ORG` et `OPENAI_PROJECT` correctement (uniquement pour une clé `sk-...`).
-- Ne partagez jamais cette clé.
-- En production (ex: Vercel), définissez les mêmes variables dans le dashboard d'hébergement.
+
 
 ### 4) Lancer le projet en local
 ```bash
