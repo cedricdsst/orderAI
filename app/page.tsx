@@ -46,7 +46,7 @@ export default function Page() {
         </div>
 
         {/* Chat area */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col max-w-2xl mx-auto">
           <Chat onOrderChange={setOrder} locale={locale} />
         </div>
 
